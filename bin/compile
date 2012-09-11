@@ -15,7 +15,12 @@ cd git-1.7.11.5
 mkdir $BUILD_DIR/local
 mkdir $BUILD_DIR/local/bin
 
-make prefix=$BUILD_DIR/local/bin all NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease
+echo "-----> Building Git..."
+make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease prefix=$BUILD_DIR/local/bin all
+echo "       done"
+
+echo "-----> Installing Git..."
 make prefix=$BUILD_DIR/local/bin install
+echo "       done."
 
 PATH=$HOME/local/bin:$PATH
