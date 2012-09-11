@@ -12,8 +12,8 @@ curl --silent --location http://git-core.googlecode.com/files/git-1.7.12.tar.gz 
 
 cd git-1.7.12
 
-md $BUILD_DIR/local
-md $BUILD_DIR/local/bin
+mkdir $BUILD_DIR/local
+mkdir $BUILD_DIR/local/bin
 
 make prefix=$BUILD_DIR/local/bin all
 make prefix=$BUILD_DIR/local/bin install
