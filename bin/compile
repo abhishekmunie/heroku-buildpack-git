@@ -8,14 +8,14 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-curl --silent --location http://git-core.googlecode.com/files/git-1.7.12.tar.gz | tar xz
+curl --silent --location http://git-core.googlecode.com/files/git-1.7.11.5.tar.gz | tar xz
 
-cd git-1.7.12
+cd git-1.7.11.5
 
 mkdir $BUILD_DIR/local
 mkdir $BUILD_DIR/local/bin
 
-make prefix=$BUILD_DIR/local/bin all
+make prefix=$BUILD_DIR/local/bin all NO_<LIBRARY>=YesPlease
 make prefix=$BUILD_DIR/local/bin install
 
 PATH=$HOME/local/bin:$PATH
