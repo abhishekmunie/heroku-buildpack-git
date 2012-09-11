@@ -16,7 +16,12 @@ mkdir $BUILD_DIR/local
 mkdir $BUILD_DIR/local/bin
 
 echo "-----> Building Git..."
-NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease make prefix=$BUILD_DIR/local/bin all
+NO_TCLTK=YesPlease
+NO_PERL=YesPlease
+NO_GETTEXT=YesPlease
+NO_SVN_TESTS=YesPlease
+NO_MSGFMT_EXTENDED_OPTIONS=YesPlease
+make prefix=$BUILD_DIR/local/bin all
 echo "       done"
 
 echo "-----> Installing Git..."
