@@ -28,7 +28,9 @@ echo "-----> Installing Git..."
 #make prefix=$BUILD_DIR/local/bin install
 #make prefix=$BUILD_DIR/local/bin PROFILE=BUILD install
 
-make NO_CURL=1 NO_MSGFMT=YesPlease NO_TCLTK=YesPlease NO_GETTEXT=YesPlease prefix=$BUILD_DIR/local/bin install
+make NO_TCLTK=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease
+
+#make NO_CURL=1 NO_MSGFMT=YesPlease NO_TCLTK=YesPlease NO_GETTEXT=YesPlease prefix=$BUILD_DIR/local/bin install
 echo "       done."
 
 PATH=$HOME/local/bin:$PATH
