@@ -8,16 +8,16 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+echo -n "-----> Downloading Git..."
 curl --silent --location http://git-core.googlecode.com/files/git-1.7.11.5.tar.gz | tar xz
-
 cd git-1.7.11.5
+echo "       done."
 
-mkdir $BUILD_DIR/local
-mkdir $BUILD_DIR/local/bin
 
 echo "-----> Installing Git..."
-make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BUILD_DIR/local/bin install
+mkdir $PWD/bin
+make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$PWD/bin install
 #make NO_CURL=1 NO_MSGFMT=YesPlease NO_TCLTK=YesPlease NO_GETTEXT=YesPlease prefix=$BUILD_DIR/local/bin install
 echo "       done."
 
-PATH=$HOME/local/bin:$PATH
+PATH=$PWD/bin:$PATH
