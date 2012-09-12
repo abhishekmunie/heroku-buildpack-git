@@ -10,6 +10,7 @@ CACHE_DIR=$2
 
 echo -n "-----> Downloading Git..."
 curl --silent --location http://git-core.googlecode.com/files/git-1.7.12.tar.gz | tar xz
+#42ec1037f1ee5bfeb405710c83b73c0515ad26e6
 cd git-1.7.12
 echo "       done."
 
@@ -17,7 +18,6 @@ echo "       done."
 echo "-----> Installing Git..."
 mkdir $PWD/bin
 make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$PWD/bin install
-#make NO_CURL=1 NO_MSGFMT=YesPlease NO_TCLTK=YesPlease NO_GETTEXT=YesPlease prefix=$BUILD_DIR/local/bin install
 echo "       done."
 
 PATH=$PWD/bin:$PATH
