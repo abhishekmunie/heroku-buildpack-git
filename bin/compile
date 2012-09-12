@@ -9,7 +9,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 echo -n "-----> Downloading Git..."
-curl --silent --location http://git-core.googlecode.com/files/git-1.7.11.5.tar.gz | tar xz
+curl --silent --location https://nodeload.github.com/git/git/tarball/master | tar xz
 cd git-1.7.11.5
 echo "       done."
 
