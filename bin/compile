@@ -16,9 +16,7 @@ mkdir $BUILD_DIR/local
 mkdir $BUILD_DIR/local/bin
 
 echo "-----> Installing Git..."
-
 make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BUILD_DIR/local/bin install
-
 #make NO_CURL=1 NO_MSGFMT=YesPlease NO_TCLTK=YesPlease NO_GETTEXT=YesPlease prefix=$BUILD_DIR/local/bin install
 echo "       done."
 
