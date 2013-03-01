@@ -4,20 +4,39 @@
 # fail fast
 set -e
 
+# clean up leaking environment
+unset GIT_DIR
+
 # parse args
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-echo -n "-----> Downloading Git..."
-curl --silent --location http://git-core.googlecode.com/files/git-1.7.12.tar.gz | tar xz
-#42ec1037f1ee5bfeb405710c83b73c0515ad26e6
-cd git-1.7.12
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+source $BUILD_DIR/_git.cfg
+
+if [[ ! $GIT_VERSION ]]; then
+  GIT_VERSION=1.8.1.4
+fi
+
+cd $BUILD_DIR
+echo -n "-----> Downloading Git $GIT_VERSION... "
+curl --silent --location https://git-core.googlecode.com/files/git-$GIT_VERSION.tar.gz | tar xz
+cd git-$GIT_VERSION
 echo "       done."
 
+if [[ ! -d $BUILD_DIR/bin]]; then
+  mkdir $BUILD_DIR/bin
+fi
 
 echo "-----> Installing Git..."
-mkdir $PWD/bin
-make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$PWD/bin install
+make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BUILD_DIR/bin install | indent
 echo "       done."
 
-PATH=$PWD/bin:$PATH
+export PATH=$BUILD_DIR/bin:$PATH
