@@ -31,7 +31,7 @@ curl --silent --location https://git-core.googlecode.com/files/git-$GIT_VERSION.
 cd git-$GIT_VERSION
 echo "       done."
 
-if [[ ! -d $BUILD_DIR/bin]]; then
+if [[ ! -d $BUILD_DIR/bin ]]; then
   mkdir $BUILD_DIR/bin
 fi
 
