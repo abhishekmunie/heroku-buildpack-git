@@ -36,7 +36,7 @@ if [[ ! -d $BUILD_DIR/bin ]]; then
 fi
 
 echo "-----> Installing Git..."
-make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BUILD_DIR/bin install | indent
+make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BUILD_DIR/bin install clean | indent
 echo "       done."
 
 export PATH=$BUILD_DIR/bin:$PATH
