@@ -47,7 +47,7 @@ else
   fi
 
   echo -n "-----> Compiling Git..."
-  make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BIN_DIR install clean | indent
+  make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease CFLAGS="-Os -g0 -Wall" prefix=$BIN_DIR install clean | indent
   echo "       done."
 
   echo -n "-----> Cleaning up Git source files..."
