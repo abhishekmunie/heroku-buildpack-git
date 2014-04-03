@@ -25,18 +25,35 @@ if [[ ! $GIT_VERSION ]]; then
   GIT_VERSION=1.8.1.4
 fi
 
-cd $BUILD_DIR
-echo -n "-----> Downloading Git $GIT_VERSION... "
-curl --silent --location https://git-core.googlecode.com/files/git-$GIT_VERSION.tar.gz | tar xz
-cd git-$GIT_VERSION
-echo "       done."
+BIN_DIR=$BUILD_DIR/vendor/git-$GIT_VERSION
 
-if [[ ! -d $BUILD_DIR/bin ]]; then
-  mkdir $BUILD_DIR/bin
+if test -d $CACHE_DIR/vendor/git-$GIT_VERSION; then
+  echo "-----> Using cached Git $GIT_VERSION..."
+  cp -r $CACHE_DIR/vendor/git-$GIT_$VERSION $BIN_DIR/
+else
+  echo -n "-----> Cleaning cached Git versions..."
+  rm -rf $CACHE_DIR/vendor/git-*
+
+  echo -n "-----> Downloading Git $GIT_VERSION..."
+  cd $BUILD_DIR
+  curl --silent --location https://git-core.googlecode.com/files/git-$GIT_VERSION.tar.gz | tar xz
+  cd git-$GIT_VERSION
+  echo "       done."
+
+  if [[ ! -d $BIN_DIR ]]; then
+    mkdir -p $BIN_DIR
+  fi
+
+  echo "-----> Compiling Git..."
+  make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BIN_DIR install clean | indent
+  echo "       done."
+
+  echo "-----> Cleaning up Git source files..."
+  rm -rf $BUILD_DIR/git-$GIT_VERSION
+  
+  echo "-----> Caching Git binaries..."
+  mkdir -p $CACHE_DIR/vendor/git-$GIT_$VERSION
+  cp -r $BIN_DIR $CACHE_DIR/vendor/git-$GIT_$VERSION/
 fi
 
-echo "-----> Installing Git..."
-make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BUILD_DIR/bin install clean | indent
-echo "       done."
-
-export PATH=$BUILD_DIR/bin:$PATH
+export PATH=$BIN_DIR:$PATH
