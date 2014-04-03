@@ -28,11 +28,13 @@ fi
 BIN_DIR=$BUILD_DIR/vendor/git-$GIT_VERSION
 
 if test -d $CACHE_DIR/vendor/git-$GIT_VERSION; then
-  echo "-----> Using cached Git $GIT_VERSION..."
+  echo -n "-----> Using cached Git $GIT_VERSION..."
   cp -r $CACHE_DIR/vendor/git-$GIT_$VERSION $BIN_DIR/
+  echo "       done."
 else
   echo -n "-----> Cleaning cached Git versions..."
   rm -rf $CACHE_DIR/vendor/git-*
+  echo "       done."
 
   echo -n "-----> Downloading Git $GIT_VERSION..."
   cd $BUILD_DIR
@@ -44,16 +46,18 @@ else
     mkdir -p $BIN_DIR
   fi
 
-  echo "-----> Compiling Git..."
+  echo -n "-----> Compiling Git..."
   make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease prefix=$BIN_DIR install clean | indent
   echo "       done."
 
-  echo "-----> Cleaning up Git source files..."
+  echo -n "-----> Cleaning up Git source files..."
   rm -rf $BUILD_DIR/git-$GIT_VERSION
+  echo "       done."
   
-  echo "-----> Caching Git binaries..."
+  echo -n "-----> Caching Git binaries..."
   mkdir -p $CACHE_DIR/vendor/git-$GIT_$VERSION
   cp -r $BIN_DIR $CACHE_DIR/vendor/git-$GIT_$VERSION/
+  echo "       done."
 fi
 
 export PATH=$BIN_DIR:$PATH
