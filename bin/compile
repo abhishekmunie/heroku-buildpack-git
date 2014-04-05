@@ -42,7 +42,7 @@ else
 
   echo -n "-----> Downloading Git $GIT_VERSION..."
   cd "$BUILD_DIR"
-  curl --silent --location "https://codeload.github.com/git/git/tar.gz/v$GIT_VERSION" | tar xz
+  curl --silent --location "https://github.com/git/git/archive/v$GIT_VERSION.tar.gz" | tar xz
   cd "git-$GIT_VERSION"
   echo "       done."
 
