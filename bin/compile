@@ -25,11 +25,9 @@ if [[ ! $GIT_VERSION ]]; then
   GIT_VERSION=1.9.1
 fi
 
-BIN_DIR=$BUILD_DIR/vendor/git
+BIN_DIR=$BUILD_DIR/vendor
 
-if [[ ! -d "$BIN_DIR" ]]; then
-  mkdir -p "$BIN_DIR"
-fi
+mkdir -p "$BIN_DIR"
 
 if [[ -d "$CACHE_DIR/vendor/git-$GIT_VERSION" ]]; then
   echo -n "-----> Using cached Git $GIT_VERSION..."
@@ -49,7 +47,6 @@ else
   echo -n "-----> Compiling Git..."
   make NO_TCLTK=YesPlease NO_PERL=YesPlease NO_GETTEXT=YesPlease NO_SVN_TESTS=YesPlease NO_MSGFMT=YesPlease NO_MSGFMT_EXTENDED_OPTIONS=YesPlease CFLAGS="-Os -g0 -Wall" prefix="$BIN_DIR" install clean | indent
   echo "       done."
-  echo "-----> Git was Installed at: $BIN_DIR"
 
   echo -n "-----> Cleaning up Git source files..."
   cd ..
@@ -58,9 +55,11 @@ else
 
   echo -n "-----> Caching Git binaries..."
   mkdir -p "$CACHE_DIR/vendor"
-  cp -r "$BIN_DIR" "$CACHE_DIR/vendor/"
-  mv $CACHE_DIR/vendor/git $CACHE_DIR/vendor/git-$GIT_VERSION
+  cp -r "$BIN_DIR/git-$GIT_VERSION" "$CACHE_DIR/vendor/"
   echo "       done."
+
+  mv "$BIN_DIR/git-$GIT_VERSION" "$BIN_DIR/git"
+  echo "-----> Git was Installed at: $BIN_DIR/git"
 fi
 
 echo -n "-----> Building runtime environment"
