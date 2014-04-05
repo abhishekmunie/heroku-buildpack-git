@@ -22,7 +22,7 @@ function indent() {
 source "$BUILD_DIR/_git.cfg"
 
 if [[ ! $GIT_VERSION ]]; then
-  GIT_VERSION=1.8.1.4
+  GIT_VERSION=1.9.1
 fi
 
 BIN_DIR=$BUILD_DIR/vendor/git-$GIT_VERSION
