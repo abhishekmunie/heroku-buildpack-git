@@ -27,13 +27,12 @@ fi
 
 BIN_DIR=$BUILD_DIR/vendor/git
 
-if [[ ! -d "$BIN_DIR" ]]; then
-  mkdir -p "$BIN_DIR"
-fi
+mkdir -p "$BIN_DIR"
 
 if [[ -d "$CACHE_DIR/vendor/git-$GIT_VERSION" ]]; then
   echo -n "-----> Using cached Git $GIT_VERSION..."
   cp -r "$CACHE_DIR/vendor/git-$GIT_VERSION" "$BIN_DIR/"
+  mv "$BIN_DIR/git-$GIT_VERSION" "$BIN_DIR/git"
   echo "       done."
 else
   echo -n "-----> Cleaning cached Git versions..."
