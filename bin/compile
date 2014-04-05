@@ -65,5 +65,5 @@ fi
 
 echo -n "-----> Building runtime environment"
 mkdir -p $BUILD_DIR/.profile.d
-echo "export PATH=\"\$BIN_DIR/bin:\$PATH\"" > $BUILD_DIR/.profile.d/git.sh
+echo "export PATH=\"\$HOME/vendor/git/bin:\$PATH\"" > $BUILD_DIR/.profile.d/git.sh
 echo "       done."
