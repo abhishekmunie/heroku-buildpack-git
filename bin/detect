@@ -2,7 +2,7 @@
 # bin/use <build-dir>
 
 if [ -f $1/_git.cfg ]; then
-  echo "Static" && exit 0
+  echo "Git" && exit 0
 else
   echo "no" && exit 1
 fi
