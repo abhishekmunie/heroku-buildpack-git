@@ -58,7 +58,8 @@ else
 
   echo -n "-----> Caching Git binaries..."
   mkdir -p "$CACHE_DIR/vendor"
-  cp -r "$BIN_DIR/*" "$CACHE_DIR/vendor/git-$GIT_VERSION/"
+  cp -r "$BIN_DIR" "$CACHE_DIR/vendor/"
+  mv $CACHE_DIR/vendor/git $CACHE_DIR/vendor/git-$GIT_VERSION
   echo "       done."
 fi
 
