@@ -65,7 +65,6 @@ if [ "$git_version" == "master" ] || ! test -d $cache_dir/git || ! test -f $cach
   # cache, for the sake of heroku-buildpack-multi apps.
   status "Cleaning cached Git version..."
   rm -rf $cache_dir/git
-  mkdir -p $cache_dir/git
 
   status "Downloading Git $git_version..."
   curl $git_url -sL -o - | tar xzf - -C $build_dir
@@ -81,13 +80,13 @@ if [ "$git_version" == "master" ] || ! test -d $cache_dir/git || ! test -f $cach
   rm -rf $git_src_dir
 
   status "Caching Git binaries..."
-  cp -R "$bin_dir/" "$cache_dir/git"
+  cp -R "$bin_dir" "$cache_dir"
   # Copy goodies to the cache
   cp -r $build_dir/.heroku $cache_dir/git
 
 else
   status "Using cached Git $git_version..."
-  cp -R "$cache_dir/git/" "$bin_dir"
+  cp -R "$cache_dir/git" "$build_dir/vendor"
 fi
 
 # Update the PATH
