@@ -34,7 +34,7 @@ Configuring Buildpack
 
 Buildpack reads its configuration from `_git.cfg`
 
-    GIT_VERSION="<git_version>"
+    git_version="<git_version>"
 
 Hacking
 -------

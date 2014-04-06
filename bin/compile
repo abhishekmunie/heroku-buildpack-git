@@ -20,6 +20,10 @@ source $bp_dir/bin/common.sh
 
 source "$build_dir/_git.cfg"
 
+if [ $GIT_VERSION && ! $git_version ]; then
+  git_version=$GIT_VERSION
+fi
+
 # Recommend using semver ranges in a safe manner
 if [ ! $git_version ]; then
   protip "You can specify a git version in _git.cfg"
