@@ -20,7 +20,7 @@ source $bp_dir/bin/common.sh
 
 source "$build_dir/_git.cfg"
 
-if [ $GIT_VERSION && ! $git_version ]; then
+if [ $GIT_VERSION ] && [ ! $git_version ]; then
   git_version=$GIT_VERSION
 fi
 
