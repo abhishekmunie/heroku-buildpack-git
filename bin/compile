@@ -64,7 +64,7 @@ if [ "$git_version" == "master" ] || ! test -d $cache_dir/git || ! test -f $cach
   mkdir -p $cache_dir/git
 
   status "Downloading Git $git_version..."
-  curl $git_url -s -l -o - | tar xz - -C $build_dir
+  curl $git_url -sL -o - | tar xz - -C $build_dir
   cd "$build_dir"
   cd $git_src_dir
 
