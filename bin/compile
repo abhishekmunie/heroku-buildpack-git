@@ -36,13 +36,13 @@ fi
 if [ "$git_version" == "" ]; then
   git_version="master"
   git_url="https://github.com/git/git/archive/master.tar.gz"
-  git_src_dir="git-master"
   status "Defaulting to latest master branch"
 else
   git_url="https://github.com/git/git/archive/v$git_version.tar.gz"
-  git_src_dir="git-$git_version"
-  status "Requested git version:  $git_version"
+  status "Requested git version: $git_version"
 fi
+
+git_src_dir="git-$git_version"
 
 bin_dir=$build_dir/vendor/git
 
