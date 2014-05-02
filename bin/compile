@@ -92,4 +92,4 @@ fi
 # Update the PATH
 status "Building runtime environment"
 mkdir -p $build_dir/.profile.d
-echo "export PATH=\"\$HOME/vendor/git/bin:\$PATH\";" > $build_dir/.profile.d/git.sh
+echo "export PATH=\"\$HOME/vendor/git/bin:\$HOME/vendor/git/libexec/git-core:\$PATH\";" > $build_dir/.profile.d/git.sh
