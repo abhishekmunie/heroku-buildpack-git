@@ -4,5 +4,5 @@
 cat <<EOF
 ---
 config_vars:
-  PATH: vendor/git/bin:bin:/usr/local/bin:/usr/bin:/bin
+  PATH: vendor/git/bin:vendor/git/libexec/git-core:bin:/usr/local/bin:/usr/bin:/bin
 EOF
